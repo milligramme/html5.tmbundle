@@ -3,10 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>command</key>
-	<string>img="$TM_DROPPED_FILE"
+	<string>#!/usr/bin/env bash
+[[ -f "${TM_SUPPORT_PATH}/lib/bash_init.sh" ]] &amp;&amp; . "${TM_SUPPORT_PATH}/lib/bash_init.sh"
+
+img="$TM_DROPPED_FILE"
 echo -n "&lt;img src=\"$img\" "
 base=${img##*/}
 alt=$(tr &lt;&lt;&lt;${base%.*} '[_-]' ' '|perl -pe 's/(\w+)/\u$1/g')
+sips -g pixelWidth -g pixelHeight $img|awk '/pixelWidth/  { printf(" width=\"%dpx\"",  $2) } /pixelHeight/ { printf(" height=\"%dpx\" \$0", $2) }'
 echo -n "alt=\"$alt\"${TM_POLYGLOT}&gt;"
 </string>
 	<key>draggedFileExtensions</key>
