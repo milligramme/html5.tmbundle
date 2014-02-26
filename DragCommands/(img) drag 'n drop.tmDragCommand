@@ -10,7 +10,7 @@ img="$TM_DROPPED_FILE"
 echo -n "&lt;img src=\"$img\" "
 base=${img##*/}
 alt=$(tr &lt;&lt;&lt;${base%.*} '[_-]' ' '|perl -pe 's/(\w+)/\u$1/g')
-sips -g pixelWidth -g pixelHeight $img|awk '/pixelWidth/  { printf(" width=\"%dpx\"",  $2) } /pixelHeight/ { printf(" height=\"%dpx\" \$0", $2) }'
+sips -g pixelWidth -g pixelHeight $img|awk '/pixelWidth/ { printf("width=\"%d\"",  $2) } /pixelHeight/ { printf(" height=\"%d\" \$0", $2) }'
 echo -n "alt=\"$alt\"${TM_POLYGLOT}&gt;"
 </string>
 	<key>draggedFileExtensions</key>
